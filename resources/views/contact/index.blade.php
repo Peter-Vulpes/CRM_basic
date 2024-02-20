@@ -17,6 +17,9 @@
                     <th scope="col" class="px-6 py-3">
                         Organization
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        Image
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -47,10 +50,22 @@
                                 {{-- contact organization --}}
                                 {{ $contact->organization->name }}
                             </td>
+                            <!-- display the contact image -->
+
+                            <td class="px-6 py-4">
+                                {{-- <img src="{{  $contact->image }}" alt="{{ $contact->first_name }}"
+                                    class="w-10 h-10 rounded-full"> --}}
+                                <!--use the asset() function to generate the correct URL to the image inside the public folder -->
+                                <img src="{{ asset('images/' . $contact->image) }}" alt="{{ $contact->first_name }}"
+                                    class="w-10 h-10 rounded-full">
+                            </td>
+
                         </tr>
                     @endforeach
                 @endif
             </tbody>
         </table>
     </div>
+    <!--create a link to the create contact page -->
+    <a href="{{ route('contact.create') }}" class="btn btn-primary">Add Contact</a>
 @endsection
