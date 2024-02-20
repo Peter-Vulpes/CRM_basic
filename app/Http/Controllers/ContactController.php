@@ -58,7 +58,7 @@ class ContactController extends Controller
             $image->move($destinationPath, $name);
             $request->image = $name;
        
-var_dump($image);
+
         
         //use the new contact to create a new organization
         $contact = new Contact();
