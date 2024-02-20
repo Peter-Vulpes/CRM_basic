@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.base')
 @section('content')
     <form action="{{ route('contact.store') }}" method="POST" enctype="multipart/form-data">
         {{-- csrf is a middleware that protects your application
