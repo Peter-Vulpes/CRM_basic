@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -25,9 +26,13 @@ class ContactController extends Controller
     public function create()
     {
         //create the contact
-        //pass on the organization
-        $org = Organization::all();
-        return view('contact.create', ['org' => $org]);
+        //pass on all fields as a variable
+        //$contact = new Contact();
+        //$fillables = $contact->getFillable();
+        //return view('contact.create', compact('fillables'));
+        //passon the organization
+        $organizations = Organization::all();
+        return view('contact.create',['organizations' => $organizations]);
 
     }
 
@@ -45,8 +50,16 @@ class ContactController extends Controller
             'job_title' => 'required',
             'organization_id' => 'required',
         ]);
-        //store the request
-        Contact::create($request->all());
+        //upload the image and store it in the database
+    
+            $image = $request->file('image');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            $request->image = $name;
+       
+var_dump($image);
+        
         //use the new contact to create a new organization
         $contact = new Contact();
         $contact->first_name = $request->first_name;
@@ -55,6 +68,7 @@ class ContactController extends Controller
         $contact->phone = $request->phone;
         $contact->job_title = $request->job_title;
         $contact->organization_id = $request->organization_id;
+        $contact->image = $request->image;
         $contact->save();
         //redirect to the index page
         return redirect()->route('contact.index');

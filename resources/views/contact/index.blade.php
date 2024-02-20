@@ -55,7 +55,8 @@
                             <td class="px-6 py-4">
                                 {{-- <img src="{{  $contact->image }}" alt="{{ $contact->first_name }}"
                                     class="w-10 h-10 rounded-full"> --}}
-                                <img src="{{ asset('storage' . $contact->image) }}" alt="{{ $contact->first_name }}"
+                                <!--use the asset() function to generate the correct URL to the image inside the public folder -->
+                                <img src="{{ asset('images/' . $contact->image) }}" alt="{{ $contact->first_name }}"
                                     class="w-10 h-10 rounded-full">
                             </td>
 
@@ -65,4 +66,6 @@
             </tbody>
         </table>
     </div>
+    <!--create a link to the create contact page -->
+    <a href="{{ route('contact.create') }}" class="btn btn-primary">Add Contact</a>
 @endsection
