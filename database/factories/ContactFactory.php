@@ -27,6 +27,7 @@ class ContactFactory extends Factory
             'organization_id' => function () {
                 return Organization::factory()->create()->id;
             },
+            'image' => "https://via.placeholder.com/150",
         ];
     }
 }
