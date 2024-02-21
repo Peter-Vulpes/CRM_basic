@@ -16,6 +16,8 @@ class Contact extends Model
         'email',
         'phone',
         'job_title',
+        'organization_id',
+        'image'
     ];
     //Add relationships
     public function organization()
