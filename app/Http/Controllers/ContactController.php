@@ -84,16 +84,15 @@ class ContactController extends Controller
         //use find or fail
         $contact = Contact::findOrFail($contact);
         //the difference between find and find or fail is that find or 
-        //fail will throw an error if the contact is not found
-        return view('contact.show', ['contact' => $contact]);
-
-        //use a try catch block
+        //fail will throw an error if the contact is not found        //that find or fail will throw an error if the contact is not found
+          //use a try catch block
         // try {
         //     $contact = Contact::findOrFail($contact);
         //     return view('contact.show', ['contact' => $contact]);
         // } catch (\Exception $e) {
         //     return redirect()->route('contact.index');
         // }
+        return view('contact.show', ['contact' => $contact]);
     }
 
     /**
